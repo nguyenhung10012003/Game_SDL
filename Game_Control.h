@@ -1,9 +1,8 @@
-#ifndef GAME
+#ifndef GAME_CONTROL_H
 #define GAME_CONTROL_H
 
 #include"Main.h"
-#include"Game_map.h"
-#include"Object.h"
+#include"Player.h"
 
 #define MENU_BG_PATH "Menu\\BG.png"
 #define GAME_START_X1 430

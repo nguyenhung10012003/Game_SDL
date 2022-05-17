@@ -63,7 +63,6 @@ void Menu::menuLoop(SDL_Renderer* render) {
         }
 
     }
-
 }
 
 void gameLoop(SDL_Renderer* render) {
@@ -103,6 +102,5 @@ void gameLoop(SDL_Renderer* render) {
         {
             SDL_Delay(DELAY_TIME - frameTime);
         }
-
     }
 }

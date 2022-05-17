@@ -1,4 +1,4 @@
-#include"Object.h"
+#include"Player.h"
 
 Player::Player() {
 
@@ -120,10 +120,7 @@ void Player::show(SDL_Renderer* render) {
 			if (frame >= MAX_FRAME_IDLE) frame = 0;
 			SDL_RenderCopy(render, idle_right, &idle_rect[frame], &rect);
 			frame++;
-		}
-		
-		
-		
+		}	
 	}
 
 	else { // horizon is left
@@ -199,13 +196,14 @@ void Player::check_map(Map& map) {
 			if (tile1.getType() != 0 || tile2.getType() != 0) {
 				y_pos = y2 * TILE_SIZE - SPRITE_HEIGHT;
 				y_val = 0;
+				onGround = true;
 			}
 		}
-		onGround = true;
+		
 	}
 	
 	if (x_pos + x_val >= 0 && x_pos + x_val + SPRITE_WIDTH <= MAP_SIZE_X) x_pos += x_val;
-	if (y_pos + y_val >= 0 && y_pos + y_val + SPRITE_HEIGHT <= MAP_SIZE_Y) y_pos += y_val;
+	if (y_pos + y_val >= 0 && y_pos <= MAP_SIZE_Y) y_pos += y_val;
 	
 }
 
@@ -220,16 +218,19 @@ void Player::move(Map& map) {
 		else x_val = -MOVE_STEP;
 	}
 
-	if (status.jump && onGround) {
-		y_val = -JUMP_STEP;
-		onGround = false;
+	if (status.jump) {
+		if (onGround) {
+			y_val = -JUMP_STEP;
+			onGround = false;
+		}
+		
 	}
 	check_map(map);
-	centerOnMap(map);
-	death();
+	centerMap(map);
+	
 }
 
-void Player::centerOnMap(Map& map) {
+void Player::centerMap(Map& map) {
 	map_x = x_pos - SCREEN_WIDTH / 2;
 	if (map_x < 0)
 	{
@@ -244,16 +245,4 @@ void Player::centerOnMap(Map& map) {
 	map.setMapX(map_x);
 	map.setMap();
 	cout << map_x << endl;
-}
-
-void Player::freeFall(Map &map) {
-	while (map.getATile(y_pos + SPRITE_HEIGHT, x_pos).getType() == 0) {
-		if (y_pos + 4 <= SCREEN_HEIGHT) y_pos += 4;
-	}
-}
-
-void Player::death() {
-	if (y_pos >= MAP_SIZE_Y - SPRITE_HEIGHT) {
-		cout << "is death";
-	}
 }

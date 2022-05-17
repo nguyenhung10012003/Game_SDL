@@ -15,7 +15,7 @@ using namespace std;
 
 static const char* WINDOW_TITLE = "THE FANTASY";
 
-const int FPS = 20;
+const int FPS = 25;
 const int DELAY_TIME = 1000 / FPS;
 
 void startSDL();

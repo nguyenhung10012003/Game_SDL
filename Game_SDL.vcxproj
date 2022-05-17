@@ -147,6 +147,7 @@
     <ClCompile Include="Game_control.cpp" />
     <ClCompile Include="Game_map.cpp" />
     <ClCompile Include="Game_SDL.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="MainFunc.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
@@ -154,8 +155,10 @@
     <ClInclude Include="Chapter.h" />
     <ClInclude Include="Game_Control.h" />
     <ClInclude Include="Game_map.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
