@@ -1,0 +1,6 @@
+1s.png 1.png 0 0
+2s.png 2.png 300 300
+3s.png 3.png 600 0
+4s.png 4.png 900 0
+5s.png 5.png 500 200
+stone.png 100 0 100 0 100 0 100 0 100 0

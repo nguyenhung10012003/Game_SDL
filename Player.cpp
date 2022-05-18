@@ -54,25 +54,18 @@ void Player::inputAction(SDL_Event& event, SDL_Renderer* render) {
 	if (event.type == SDL_KEYDOWN) {
 		switch (event.key.keysym.sym) {
 		case SDLK_w:
-			//y_val = -JUMP_STEP;
 			status.jump = 1;
 			status.idle = 0;
 			break;
 		case SDLK_a :
-			//x_val = -MOVE_STEP;
 			status.direction = false;
 			status.run = 1;
 			status.idle = 0;
 			break;
 		case SDLK_d :
-			//x_val = MOVE_STEP;
 			status.direction = true;
 			status.run = 1;
 			status.idle = 0;
-			break;
-		case SDLK_s :
-			//y_val = 0;
-
 			break;
 		}
 	}
@@ -139,7 +132,6 @@ void Player::show(SDL_Renderer* render) {
 			SDL_RenderCopy(render, idle_left, &idle_rect[frame], &rect);
 			frame++;
 		}
-		
 	}
 }
 
@@ -207,7 +199,7 @@ void Player::check_map(Map& map) {
 	
 }
 
-void Player::move(Map& map) {
+void Player::move(Map& map, vector<CollectItem>& keyItem, vector<CollectItem>& subItem) {
 	
 	x_val = 0;
 	y_val += 5;
@@ -223,11 +215,15 @@ void Player::move(Map& map) {
 			y_val = -JUMP_STEP;
 			onGround = false;
 		}
-		
 	}
 	check_map(map);
+	check_item(keyItem, subItem);
 	centerMap(map);
 	
+}
+
+void Player::check_item(vector<CollectItem>& keyItem, vector<CollectItem>& subItem) {
+
 }
 
 void Player::centerMap(Map& map) {

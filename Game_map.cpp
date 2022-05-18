@@ -23,6 +23,11 @@ void Tile::loadTile(SDL_Renderer* render) {
 }
 
 Map::Map() {
+	rect.x = 0;
+	rect.y = 0;
+	rect.w = 0;
+	rect.h = 0;
+	map_x = 0;
 	backGround = NULL;
 	srcrect.x = 0;
 	srcrect.y = 0;

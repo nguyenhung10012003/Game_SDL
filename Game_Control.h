@@ -3,6 +3,7 @@
 
 #include"Main.h"
 #include"Player.h"
+#include<vector>
 
 #define MENU_BG_PATH "Menu\\BG.png"
 #define GAME_START_X1 430
@@ -23,6 +24,7 @@ public:
 	bool getGameStart();
 };
 
+void loadAllItem(vector<CollectItem>& keyItem, vector<CollectItem>& subItem, SDL_Renderer* render);
 void gameLoop(SDL_Renderer* render);
 
 #endif // !GAME

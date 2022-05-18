@@ -4,7 +4,6 @@
 
 #include"Main.h"
 #include"Object.h"
-#include"Game_map.h"
 #include"Item.h"
 
 #define MAX_FRAME_IDLE 10
@@ -50,8 +49,9 @@ public:
 	void loadImage(SDL_Renderer* render);
 	void inputAction(SDL_Event& event, SDL_Renderer* render);
 	void show(SDL_Renderer* render);
-	void move(Map& map);
+	void move(Map& map, vector<CollectItem>& keyItem, vector<CollectItem>& subItem);
 	void check_map(Map& map);
+	void check_item(vector<CollectItem> &keyItem, vector<CollectItem> &subItem);
 	void centerMap(Map& map);
 
 };
