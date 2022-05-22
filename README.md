@@ -66,4 +66,5 @@
     * Từ ý tưởng đi tới thực tế là một con đường không tưởng.
     * Việc viết code không khó bằng fix bug.
     * Sử dụng kỹ thuật hướng đối tượng sẽ giúp việc quản lý trở nên dễ dàng hơn rất nhiều.
+    * Google là một công cụ hỗ trợ đắc lực trong quá trình viết code.
     * Lập trình nói chung cũng khá vui.
