@@ -5,6 +5,14 @@
 
 #include"Main.h"
 
+struct Position {
+	int x;
+	int y;
+	Position(const int& x = 0, const int& y = 0) {
+		this->x = x;
+		this->y = y;
+	}
+};
 
 struct Status {
 	bool idle = 1, run = 0, jump = 0; 

@@ -1,0 +1,4 @@
+Chapter1\\Item\\Savepoint.png
+32 128
+1520 228
+2340 178

@@ -55,16 +55,6 @@ int CollectItem::getPosY() {
 	return y;
 }
 
-SavePoint::SavePoint(const int& x, const int& y) {
-	this->x = x;
-	this->y = y;
-}
-
-void CheckPoint::setSavePoint(const int& x, const int& y) {
-	savePoint.x = x;
-	savePoint.y = y;
-}
-
-SavePoint CheckPoint::getSavePoint() {
-	return savePoint;
+bool CollectItem::collected() {
+	return isCollected;
 }

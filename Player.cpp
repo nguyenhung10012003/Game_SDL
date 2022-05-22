@@ -32,6 +32,7 @@ Player::Player() {
 	status.direction = true;
 	onGround = true;
 	map_x = 0;
+	special_input = false;
 	
 }
 
@@ -67,6 +68,9 @@ void Player::inputAction(SDL_Event& event, SDL_Renderer* render) {
 			status.run = 1;
 			status.idle = 0;
 			break;
+		case SDLK_y:
+			special_input = true;
+			break;
 		}
 	}
 	else if (event.type == SDL_KEYUP) {
@@ -85,6 +89,9 @@ void Player::inputAction(SDL_Event& event, SDL_Renderer* render) {
 			x_val = 0;
 			status.run = 0;
 			status.idle = 1;
+			break;
+		case SDLK_y:
+			special_input = false;
 			break;
 		}
 		
@@ -106,6 +113,7 @@ void Player::show(SDL_Renderer* render) {
 		
 		else if (status.run) {
 			if (frame >= MAX_FRAME_OTHER) frame = 0;
+			Mix_PlayChannel(-1, RUN, 0);
 			SDL_RenderCopy(render, run_right, &other_rect[frame], &rect);
 			frame++;
 		}
@@ -124,6 +132,7 @@ void Player::show(SDL_Renderer* render) {
 		}
 		else if (status.run) {
 			if (frame >= MAX_FRAME_OTHER) frame = 0;
+			Mix_PlayChannel(-1, RUN, 0);
 			SDL_RenderCopy(render, run_left, &other_rect[frame], &rect);
 			frame++;
 		}
@@ -169,7 +178,7 @@ void Player::check_map(Map& map) {
 	y1 = (y_pos + y_val) / TILE_SIZE;
 	y2 = (y_pos + y_val + SPRITE_HEIGHT - 1) / TILE_SIZE;
 
-	cout << x1 << " " << x2 << " " << y1 << " " << y2 << " " << x_pos << " " << y_pos << endl; // 1 2 6 7 
+	cout << x_pos  << " " << y_pos - 10  << endl;
 
 	if (x1 >= 0 && x2 < TILE_MAX_X && y1 >= 0 && y2 < TILE_MAX_Y) {
 		if (y_val < 0) {
@@ -196,7 +205,7 @@ void Player::check_map(Map& map) {
 	
 	if (x_pos + x_val >= 0 && x_pos + x_val + SPRITE_WIDTH <= MAP_SIZE_X) x_pos += x_val;
 	if (y_pos + y_val >= 0 && y_pos <= MAP_SIZE_Y) y_pos += y_val;
-	
+	if (y_pos >= MAP_SIZE_Y) returnSavePoint();
 }
 
 void Player::move(Map& map, vector<CollectItem>& keyItem, vector<CollectItem>& subItem) {
@@ -218,12 +227,56 @@ void Player::move(Map& map, vector<CollectItem>& keyItem, vector<CollectItem>& s
 	}
 	check_map(map);
 	check_item(keyItem, subItem);
+	check_SavePoint(map);
 	centerMap(map);
 	
 }
 
 void Player::check_item(vector<CollectItem>& keyItem, vector<CollectItem>& subItem) {
 
+	int x1 = x_pos, x2 = x_pos + SPRITE_WIDTH;
+	int y1 = y_pos, y2 = y_pos + SPRITE_HEIGHT;
+
+	// check key item
+	for (int i = 0; i < NUMBER_KEY_ITEM; i++) {
+		if (keyItem[i].collected()) continue;
+		
+		// check x horizon
+		bool checkx1 = (x1 >= keyItem[i].getPosX() && x1 <= keyItem[i].getPosX() + ITEM_WIDTH);
+		bool checkx2 = (x2 >= keyItem[i].getPosX() && x2 <= keyItem[i].getPosX() + ITEM_WIDTH);
+		
+		//check y horizon
+		bool checky1 = (y1 >= keyItem[i].getPosY() && y1 <= keyItem[i].getPosY() + ITEM_HEIGHT);
+		bool checky2 = (y2 >= keyItem[i].getPosY() && y2 <= keyItem[i].getPosY() + ITEM_HEIGHT);
+
+		if (checkx1 && checky1 || checkx1 && checky2 || checkx2 && checky1 || checkx2 && checky2) {
+			keyItem[i].setCollected(true);
+			Mix_PlayChannel(-1, COLLECT, 0);
+		}
+	}
+
+	// check sub item
+	for (int i = 0; i < NUMBER_KEY_ITEM; i++) {
+		if (subItem[i].collected()) continue;
+
+		// check x horizon
+		bool checkx1 = (x1 >= subItem[i].getPosX() && x1 <= subItem[i].getPosX() + ITEM_WIDTH);
+		bool checkx2 = (x2 >= subItem[i].getPosX() && x2 <= subItem[i].getPosX() + ITEM_WIDTH);
+
+		//check y horizon
+		bool checky1 = (y1 >= subItem[i].getPosY() && y1 <= subItem[i].getPosY() + ITEM_HEIGHT);
+		bool checky2 = (y2 >= subItem[i].getPosY() && y2 <= subItem[i].getPosY() + ITEM_HEIGHT);
+
+		if (checkx1 && checky1 || checkx1 && checky2 || checkx2 && checky1 || checkx2 && checky2) {
+			subItem[i].setCollected(true);
+			Mix_PlayChannel(-1, COLLECT, 0);
+		}
+	}
+}
+
+void Player::check_SavePoint(Map& map) {
+	if (map.getSavePoint(x_pos, y_pos).x != 0 && map.getSavePoint(x_pos, y_pos).y != 0) 
+		savePoint = map.getSavePoint(x_pos, y_pos);
 }
 
 void Player::centerMap(Map& map) {
@@ -240,5 +293,45 @@ void Player::centerMap(Map& map) {
 	
 	map.setMapX(map_x);
 	map.setMap();
-	cout << map_x << endl;
+}
+
+void Player::returnSavePoint() {
+	x_pos = savePoint.x;
+	y_pos = savePoint.y;
+}
+
+void Player::teleport(vector<TeleGate>& teleGate, SDL_Event& event, SDL_Renderer* render) {
+	for (int i = 0; i < NUMBER_TELEPORT; i++) {
+		int gate_posX1 = teleGate[i].getPosX1();
+		int gate_posX2 = teleGate[i].getPosX2();
+		int gate_posY1 = teleGate[i].getPosY1();
+		int gate_posY2 = teleGate[i].getPosY2();
+
+		int x_center = x_pos + SPRITE_WIDTH / 2;
+		int y_center = y_pos + SPRITE_HEIGHT / 2;
+
+		bool checkX = (x_center >= gate_posX1 && x_pos <= gate_posX1 + TELE_WIDTH);
+		bool checkY = (y_center >= gate_posY1 && y_pos <= gate_posY1 + TELE_HEIGHT);
+		if (checkX && checkY) {
+			if (teleGate[i].isTele(event, render) && special_input) {
+				special_input = false;
+				x_pos = gate_posX2;
+				y_pos = gate_posY2;
+			}
+		}
+		
+		checkX = (x_center >= gate_posX2 && x_pos <= gate_posX2 + TELE_WIDTH);
+		checkY = (y_center >= gate_posY2 && y_pos <= gate_posY2 + TELE_HEIGHT);
+		if (checkX && checkY) {
+			if (teleGate[i].isTele(event, render) && special_input) {
+				special_input = false;
+				x_pos = gate_posX1;
+				y_pos = gate_posY1;
+			}
+		}
+	}
+}
+
+Position Player::getPos() {
+	return Position(x_pos, y_pos);
 }

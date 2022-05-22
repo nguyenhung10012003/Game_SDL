@@ -5,6 +5,14 @@ void startSDL() {
         cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
         return;
     }
+
+    if (TTF_Init() < 0)
+    {
+        SDL_Log("%s", TTF_GetError());
+        return;
+    }
+
+    if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1) return;
 }
 
 SDL_Window* creatWindow() {

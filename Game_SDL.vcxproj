@@ -72,8 +72,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)SDL2_image-2.0.5\include;$(SolutionDir)SDL2-2.0.20\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)SDL2_image-2.0.5\lib\x86;$(SolutionDir)SDL2-2.0.20\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)SDL2_ttf-2.0.12\include;$(SolutionDir)SDL2_mixer-2.0.4\include;$(SolutionDir)SDL2_image-2.0.5\include;$(SolutionDir)SDL2-2.0.20\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)SDL2_ttf-2.0.12\lib\x86;$(SolutionDir)SDL2_mixer-2.0.4\lib\x86;$(SolutionDir)SDL2_image-2.0.5\lib\x86;$(SolutionDir)SDL2-2.0.20\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -94,7 +94,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -144,15 +144,17 @@
   <ItemGroup>
     <ClCompile Include="BaseObj.cpp" />
     <ClCompile Include="Chapter.cpp" />
+    <ClCompile Include="Collapse.cpp" />
     <ClCompile Include="Game_control.cpp" />
     <ClCompile Include="Game_map.cpp" />
-    <ClCompile Include="Game_SDL.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="MainFunc.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chapter.h" />
+    <ClInclude Include="Collapse.h" />
     <ClInclude Include="Game_Control.h" />
     <ClInclude Include="Game_map.h" />
     <ClInclude Include="Item.h" />

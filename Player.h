@@ -1,6 +1,6 @@
 #pragma once
 #ifndef PLAYER_H
-#define PLAER_H
+#define PLAYER_H
 
 #include"Main.h"
 #include"Object.h"
@@ -8,8 +8,6 @@
 
 #define MAX_FRAME_IDLE 10
 #define MAX_FRAME_OTHER 8
-#define SPRITE_WIDTH 50
-#define SPRITE_HEIGHT 72
 #define IDLE_RIGHT_PATH "Chapter1\\Main\\Idle_right.png"
 #define JUMP_RIGHT_PATH	"Chapter1\\Main\\Jump_Right.png"
 #define RUN_RIGHT_PATH "Chapter1\\Main\\1.png"
@@ -42,6 +40,11 @@ private:
 	Status status;
 	bool onGround;
 	int map_x;
+	SavePoint savePoint;
+	bool special_input;
+
+	Mix_Chunk* RUN = Mix_LoadWAV(SOUND_RUN_PATH);
+	Mix_Chunk* COLLECT = Mix_LoadWAV(SOUND_COLLECT_PATH);
 
 public:
 	Player();
@@ -52,7 +55,11 @@ public:
 	void move(Map& map, vector<CollectItem>& keyItem, vector<CollectItem>& subItem);
 	void check_map(Map& map);
 	void check_item(vector<CollectItem> &keyItem, vector<CollectItem> &subItem);
+	void check_SavePoint(Map& map);
 	void centerMap(Map& map);
+	void returnSavePoint();
+	void teleport(vector<TeleGate>& telegate, SDL_Event& event, SDL_Renderer* render);
+	Position getPos();
 
 };
 

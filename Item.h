@@ -8,7 +8,6 @@
 
 #define NUMBER_KEY_ITEM 5
 #define NUMBER_SUB_ITEM 5
-#define NUMBER_SAVE_POINT 3
 #define NUMBER_TELEPORT 2
 #define ITEM_WIDTH 50
 #define ITEM_HEIGHT 50
@@ -31,21 +30,9 @@ public:
 	void setNRect(const int& x, const int& y, const int& w, const int& h);
 	int getPosX();
 	int getPosY();
+	bool collected();
 };
 
-struct SavePoint { // the struct storage position of Player when player pass the save Point
-	int x, y;
-	SavePoint(const int& x = 0, const int& y = 0);
-};
 
-class CheckPoint : public BaseObject{
-private:
-	SavePoint savePoint;
-	bool isPass;
-
-public:
-	void setSavePoint(const int &x, const int &y);
-	SavePoint getSavePoint();
-};
 
 #endif // !ITEM_H
