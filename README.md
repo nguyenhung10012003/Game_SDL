@@ -1,4 +1,4 @@
-BÁO CÁO DỰ ÁN LẬP TRÌNH
+# BÁO CÁO DỰ ÁN LẬP TRÌNH
 
 1. Hướng dẫn cài đặt (cho HĐH Windows)
   - Bước 1: Chuyển repo này về tài khoản cá nhân.
