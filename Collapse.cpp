@@ -31,11 +31,13 @@ void Collapse::showObj(SDL_Renderer* render, Map& map) {
 	nRect.y = 0;
 	SDL_RenderFillRect(render, &nRect);
 	frame++;
-	x = x + COLLAPSE_SPEED;
-
 }
 
 
 Position Collapse::getPos() {
 	return Position(x, y);
+}
+
+void Collapse::move() {
+	x = x + COLLAPSE_SPEED;
 }
