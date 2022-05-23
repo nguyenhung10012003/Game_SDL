@@ -178,8 +178,6 @@ void Player::check_map(Map& map) {
 	y1 = (y_pos + y_val) / TILE_SIZE;
 	y2 = (y_pos + y_val + SPRITE_HEIGHT - 1) / TILE_SIZE;
 
-	cout << x_pos  << " " << y_pos - 10  << endl;
-
 	if (x1 >= 0 && x2 < TILE_MAX_X && y1 >= 0 && y2 < TILE_MAX_Y) {
 		if (y_val < 0) {
 			Tile tile1 = map.getATile(y1, x1);

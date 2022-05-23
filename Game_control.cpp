@@ -43,12 +43,14 @@ void Menu::menuLoop(SDL_Renderer* render) {
                     if (mouse_x >= GAME_START_X1 && mouse_x <= GAME_START_X2
                         && mouse_y >= GAME_START_Y1 && mouse_y <= GAME_START_Y2) 
                         gameStart = true;
+                    if (mouse_x >= QUIT_X1 && mouse_x <= QUIT_X2
+                        && mouse_y >= QUIT_Y1 && mouse_y <= QUIT_Y2)
+                        exit(1);
                 }
                 break;
             case SDL_MOUSEMOTION:
                 mouse_x = event.motion.x;
                 mouse_y = event.motion.y;
-                //cout << x << " " << y << endl;
                 break;
          
             }
@@ -154,6 +156,11 @@ void gameLoop(SDL_Renderer* render, bool& won) {
     collapse.setFrame();
 
     bool isRunning = true;
+    bool isPause = false;
+    BaseObject pause;
+    pause.loadImage(render, PAUSE_PATH);
+    pause.setRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
     SDL_Event event;
     UINT32 frameStart, frameTime;
     
@@ -170,13 +177,18 @@ void gameLoop(SDL_Renderer* render, bool& won) {
                 isRunning = false;
                 exit(1);
                 break;
+            case SDL_KEYDOWN:
+                if (event.key.keysym.sym == SDLK_p)
+                    if (isPause) isPause = false;
+                    else isPause = true;
+                break;
             default:
                 break;
             }
-            player.inputAction(event, render);
+            if (!isPause) player.inputAction(event, render);
         }
 
-        player.move(map,keyItem,subItem);
+        if (!isPause) player.move(map,keyItem,subItem);
         gameOver(player, collapse, isRunning, won);
         map.showMap(render);
         player.teleport(teleGate, event, render);
@@ -185,9 +197,11 @@ void gameLoop(SDL_Renderer* render, bool& won) {
         finishGate.showGate(render, map);
         Won(player, finishGate, isRunning, won);
         player.show(render);
+        if (!isPause) collapse.move();
         collapse.showObj(render, map);
+        if (isPause) pause.show(render);
         SDL_RenderPresent(render);
-
+        
         frameTime = SDL_GetTicks() - frameStart;
         if (frameTime < DELAY_TIME)
         {

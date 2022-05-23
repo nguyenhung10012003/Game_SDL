@@ -25,6 +25,7 @@ public:
 	void setFrame();
 	void showObj(SDL_Renderer* render, Map& map);
 	Position getPos();
+	void move();
 };
 
 #endif // !COLLAPSE_H
