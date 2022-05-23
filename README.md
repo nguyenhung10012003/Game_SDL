@@ -17,6 +17,25 @@
   
   
 ## 3. Các chức năng trong trò chơi
+  - Chức năng Menu game:
+    * Có nút Start game: Khi người chơi click chuột phải vào nút Start Game thì trò chơi sẽ bắt đầu.
+    * Có nút Quit game: Khi người chơi click chuột phải vào nút Quit Game thì cửa sổ trò chơi sẽ đóng lại.
+ 
+  - Các chức năng khi chơi game:
+    * Chức năng di chuyển nhân vật: Sử dụng phím w để nhảy, phím a để di chuyển sang trái, phím d để di chuyển sang phải.
+    * Chức năng va chạm: nhân vật không thể di chuyển nếu bị chắn bởi các địa hình.
+    * Chức năng rơi của nhân vật: Khi nhân vật ở trên không sẽ luôn có xu hướng rơi xuống với 1 gia tốc nhất định.
+    * Chức năng thu thập vật phẩm: mỗi khi nhân vật di chuyển đến vị trí của 1 vật phẩm thì vật phẩm đó sẽ được thu thập.
+    * Chức năng Save Point: mỗi khi rơi xuống vực nhân vật sẽ trở lại ví trí của điểm save point gần nhất mà nhân vật mới đi qua.
+    * Chức năng di chuyển map: Khi nhân vật di chuyển bản đồ cũng sẽ đi theo sao cho phù hợp.
+    * Chức năng pause game: bấm phím p để pause game và bấm p một lần nữa để tiếp tục trò chơi.
+  
+  - Các chức năng âm thanh:
+    * Âm thanh khi nhân vật chạy
+    * Âm thanh khi thu thập vật phẩm
+    * Âm thanh khi chiến thắng
+    * Âm thanh khi game over
+    * Nhạc nền trò chơi
   
 ## 4. Các Kỹ thuật lập trình được sử dụng trong trò chơi
   - Kỹ thuật lập trình hướng đối tượng: Trò chơi được chia thành nhiều đối tượng khác nhau để dễ dàng quản lý và sử dụng. Có tận dụng tất cả tính năng của lập trình hướng đối tượng bao gồm tính kế thừa, tính đóng gói, tính đa hình.
@@ -57,7 +76,7 @@
  
   - Huóng phát triển tiếp theo:
     * Sửa lại hình ảnh của một số đối tượng để đối tượng trở nên đẹp hơn, không bị rời rạc.
-    * Thêm bộ đếm thời gian và tính năng paused game.
+    * Thêm bộ đếm thời gian cho game.
     * Tạo ra thêm các màn chơi mới.
     * Tạo ra các cơ chế mới cho trò chơi (VD như cơ chế địa hình có thể di chuyển, cơ chế kích hoạt tính năng ẩn của địa hình v.v)
     * Tạo ra hệ thống thành tựu cho phép mở khoá màn chơi mới và thêm các tính năng để người chơi có thể chọn 1 trong nhiều tính năng hỗ trợ giúp việc qua màn trở nên dễ dàng (vd nhân vật nhảy cao hơn, rơi chậm hơn, tốc độ nhanh hơn v.v).
