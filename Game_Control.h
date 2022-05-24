@@ -6,7 +6,7 @@
 #include<vector>
 
 #define MENU_BG_PATH "Menu\\BG.png"
-#define PAUSE_PATH "Chapter1\\pause.png"
+#define PAUSE_PATH "Image\\pause.png"
 #define GAME_START_X1 430
 #define GAME_START_Y1 280
 #define GAME_START_X2 770
@@ -15,8 +15,8 @@
 #define QUIT_Y1 365
 #define QUIT_X2 643
 #define QUIT_Y2 386
-#define WON_PATH "Chapter1\\won.PNG"
-#define LOSE_PATH "Chapter1\\lose.PNG"
+#define WON_PATH "Image\\won.PNG"
+#define LOSE_PATH "Image\\lose.PNG"
 #define FINISH_PATH "Chapter1\\finish.txt"
 
 class Menu {

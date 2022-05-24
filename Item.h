@@ -11,8 +11,8 @@
 #define NUMBER_TELEPORT 2
 #define ITEM_WIDTH 50
 #define ITEM_HEIGHT 50
-#define ITEM_PATH "Chapter1\\Item\\Item.txt"
-#define HEAD_PATH "Chapter1\\Item\\"
+#define ITEM_PATH "Chapter1\\Item.txt"
+#define HEAD_PATH "Item\\"
 
 class CollectItem : public BaseObject{
 private:

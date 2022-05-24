@@ -8,14 +8,14 @@
 
 #define MAX_FRAME_IDLE 10
 #define MAX_FRAME_OTHER 8
-#define IDLE_RIGHT_PATH "Chapter1\\Main\\Idle_right.png"
-#define JUMP_RIGHT_PATH	"Chapter1\\Main\\Jump_Right.png"
-#define RUN_RIGHT_PATH "Chapter1\\Main\\1.png"
-#define FALL_RIGHT_PATH "Chapter1\\Main\\Fall_Right.png"
-#define IDLE_LEFT_PATH "Chapter1\\Main\\Idle_Left.png"
-#define JUMP_LEFT_PATH "Chapter1\\Main\\Jump_Left.png"
-#define RUN_LEFT_PATH "Chapter1\\Main\\2.png"
-#define FALL_LEFT_PATH "Chapter1\\Main\\Fall_Left.png"
+#define IDLE_RIGHT_PATH "Main\\Idle_right.png"
+#define JUMP_RIGHT_PATH	"Main\\Jump_Right.png"
+#define RUN_RIGHT_PATH "Main\\1.png"
+#define FALL_RIGHT_PATH "Main\\Fall_Right.png"
+#define IDLE_LEFT_PATH "Main\\Idle_Left.png"
+#define JUMP_LEFT_PATH "Main\\Jump_Left.png"
+#define RUN_LEFT_PATH "Main\\2.png"
+#define FALL_LEFT_PATH "Main\\Fall_Left.png"
 
 const int MOVE_STEP = 8;
 const int JUMP_STEP = 30;

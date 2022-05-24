@@ -91,7 +91,7 @@ void loadAllItem(vector<CollectItem> &keyItem, vector<CollectItem>& subItem, SDL
         file >> x >> y;
         subItem[i].loadItem(render, (HEAD_PATH + path).c_str(), (HEAD_PATH + path).c_str());
         subItem[i].setPos(x, y);
-        subItem[i].setNRect(0, 0, ITEM_WIDTH, ITEM_HEIGHT);
+        subItem[i].setNRect(-100, -100, ITEM_WIDTH, ITEM_HEIGHT);
     }
     // load done !
 }

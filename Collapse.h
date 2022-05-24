@@ -6,7 +6,7 @@
 #include"Object.h"
 #include"Game_map.h"
 
-#define COLLAPSE_PATH "Chapter1\\Collapse.png"
+#define COLLAPSE_PATH "Image\\Collapse.png"
 #define COLLAPSE_WIDTH 520
 #define COLLAPSE_HEIGHT 1200
 #define COLLAPSE_FRAME 12

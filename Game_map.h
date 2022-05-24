@@ -16,7 +16,7 @@
 #define NUMBER_SAVE_POINT 3
 #define NUMBER_TELEPORT 2
 #define TELE_PATH "Chapter1\\tele.txt"
-#define INTRUCE "chapter1\\Intruce.png"
+#define INTRUCE "Image\\Intruce.png"
 #define SPRITE_WIDTH 50
 #define SPRITE_HEIGHT 72
 #define SAVE_POINT_WIDTH 50
