@@ -37,6 +37,7 @@
     * Âm thanh khi game over
     * Nhạc nền trò chơi
   
+  - Link demo youtube:
 ## 4. Các Kỹ thuật lập trình được sử dụng trong trò chơi
   - Kỹ thuật lập trình hướng đối tượng: Trò chơi được chia thành nhiều đối tượng khác nhau để dễ dàng quản lý và sử dụng. Có tận dụng tất cả tính năng của lập trình hướng đối tượng bao gồm tính kế thừa, tính đóng gói, tính đa hình.
   - Kỹ thuật chia tách file: Các Class được khai báo trong các file .h và việc định nghĩa chi tiết các phương thức của class được đưa vào trong các file .cpp
